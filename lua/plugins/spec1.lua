@@ -1,10 +1,7 @@
 return {
    {
       "ibhagwan/fzf-lua",
-      -- optional for icon support
       dependencies = { "nvim-tree/nvim-web-devicons" },
-      -- or if using mini.icons/mini.nvim
-      -- dependencies = { "nvim-mini/mini.icons" },
       opts = {}
    },
    {
@@ -214,7 +211,6 @@ return {
          vim.lsp.config('bashls', {
             capabilities = capabilities,
          })
-
       end,
    },
    -- blink.cmp
@@ -228,5 +224,25 @@ return {
          sources = { default = { 'lsp', 'buffer', 'path', 'snippets' } },
          fuzzy = { implementation = "prefer_rust_with_warning" }
       }
+   },
+   {
+      "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
+      config = function()
+         require("lsp_lines").setup()
+         vim.diagnostic.config({ virtual_text = false })  -- disable inline text
+      end,
+   },
+   {
+      'akinsho/toggleterm.nvim', 
+      version = "*",
+      config = function()
+          require("toggleterm").setup{
+            open_mapping = [[nn]], -- <leader>t instead of Ctrl-\
+            direction = "float",
+            shade_terminals = true,
+            size = 50,
+            float_opts = { border = "curved" },
+          }
+      end,
    },
 }
