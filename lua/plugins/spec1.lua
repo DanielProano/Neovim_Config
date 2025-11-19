@@ -137,7 +137,6 @@ return {
       event = "InsertEnter",
       config = true
    },
-  
    -- Mason
    { 'mason-org/mason.nvim', opts = {} },
 
@@ -180,8 +179,8 @@ return {
                   disableOrganizeImports = false,
                   analysis = {
                      autoSearchPaths = true,
-                     diagnosticMode = "openFilesOnly", -- << only lint open files
-                     typeCheckingMode = "basic",       -- or "off" for fewer warnings
+                     diagnosticMode = "openFilesOnly",
+                     typeCheckingMode = "basic",
                      useLibraryCodeForTypes = true,
                   },
                },
@@ -194,8 +193,18 @@ return {
 
          vim.lsp.config('rust_analyzer', {
             capabilities = capabilities,
+            settings = {
+               ["rust_analyzer"] = {
+                  checkOnSave = {
+                     command = "clippy",
+                     extraArgs = { "no-deps" },
+                  },
+               }, 
+               cargo = { allFeatures = true },
+               procMacro = { enable = true },
+            },
          })
-         
+
          vim.lsp.config('html', {
             capabilities = capabilities,
          })
@@ -244,5 +253,27 @@ return {
             float_opts = { border = "curved" },
           }
       end,
+   },
+   {
+      'nvimdev/lspsaga.nvim',
+      config = function()
+         require('lspsaga').setup({})
+      end,
+      dependencies = {
+         'nvim-treesitter/nvim-treesitter',
+         'nvim-tree/nvim-web-devicons',
+      }
+   },
+   {
+     "linux-cultist/venv-selector.nvim",
+     dependencies = {
+       "neovim/nvim-lspconfig",
+       { "nvim-telescope/telescope.nvim", branch = "0.1.x", dependencies = { "nvim-lua/plenary.nvim" } },
+     },
+     ft = "python",
+     opts = {
+         search = {},
+         options = {}
+     },
    },
 }

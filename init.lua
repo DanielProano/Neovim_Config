@@ -70,6 +70,9 @@ vim.keymap.set('n', 'o', '<Nop>', {noremap = true, silent = true})
 vim.keymap.set('n', 'xx', '<Cmd>:q<CR>', {noremap = true, silent = true})
 vim.keymap.set('v', '<S-Tab>', '<gv', {noremap = true, silent = true})
 vim.keymap.set('v', '<Tab>', '>gv', {noremap = true, silent = true})
+vim.keymap.set('n', 'ff', '<Cmd>:Lspsaga finder<CR>', {noremap = true, silent = true})
+vim.keymap.set('n', 'mm', '<Cmd>:Lspsaga hover_doc<CR>', {noremap = true, silent = true})
+vim.keymap.set('n', 'rr', '<Cmd>:VenvSelect<CR>', {noremap = true, silent = true})
 
 vim.keymap.set("n", "oo", function()
   require("lsp_lines").toggle()
@@ -80,7 +83,12 @@ vim.keymap.set('n', '<C-g>', function()
 end, { desc = "Find Files" })
 
 vim.keymap.set('n', '<C-f>', function()
-	require('fzf-lua').live_grep()
+	require('fzf-lua').grep_curbuf({
+      rg_opts = "--column --line-number --no-heading --color=always -w",
+      fzf_opts = {
+         ["--exact"] = "",  -- force exact match
+      },
+  })
 end, { desc = "Live Grep" })
 
 vim.api.nvim_create_autocmd("TermOpen", {
