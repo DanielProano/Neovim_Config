@@ -6,8 +6,8 @@ return {
    },
    {
       'nvim-treesitter/nvim-treesitter',
-      build = ':TSUpdate',  -- automatically update parsers
-      event = { "BufReadPost", "BufNewFile" }, -- lazy-load on file open
+      build = ':TSUpdate',                              -- automatically update parsers
+      event = { "BufReadPost", "BufNewFile" },          -- lazy-load on file open
       dependencies = {
          'nvim-treesitter/nvim-treesitter-textobjects', -- optional
       },
@@ -15,38 +15,38 @@ return {
          require('nvim-treesitter.configs').setup({
             ensure_installed = { "c", "cpp", "python", "lua", "rust", "javascript", "html", "css", "typescript", "sql", "markdown", "yaml" }, -- languages
             highlight = {
-               enable = true,              -- false will disable the whole extension
+               enable = true,                                                                                                                 -- false will disable the whole extension
                additional_vim_regex_highlighting = false,
             },
             indent = {
-               enable = false 
+               enable = false
             },
             textobjects = {
                select = {
                   enable = true,
-                  lookahead = true, -- jump forward to textobject
+                  lookahead = true,              -- jump forward to textobject
                   keymaps = {
-                     ["af"] = "@function.outer",  -- select around function
-                     ["if"] = "@function.inner",  -- select inside function
-                     ["ac"] = "@class.outer",     -- select around class
-                     ["ic"] = "@class.inner",     -- select inside class
-                     ["at"] = "@block.outer",     -- select around any block
-                     ["it"] = "@block.inner",     -- select inside any block
+                     ["af"] = "@function.outer", -- select around function
+                     ["if"] = "@function.inner", -- select inside function
+                     ["ac"] = "@class.outer",    -- select around class
+                     ["ic"] = "@class.inner",    -- select inside class
+                     ["at"] = "@block.outer",    -- select around any block
+                     ["it"] = "@block.inner",    -- select inside any block
                   },
                },
-            }, 
+            },
          })
       end
    },
-   { 
+   {
       "nvim-neo-tree/neo-tree.nvim",
       branch = "v3.x",
       dependencies = {
          "nvim-lua/plenary.nvim",
          "MunifTanjim/nui.nvim",
-         "nvim-tree/nvim-web-devicons", -- optional, recommended
+         "nvim-tree/nvim-web-devicons",
       },
-      lazy = false, -- load immediately
+      lazy = false,
       config = function()
          require("neo-tree").setup({
             close_if_last_window = true,
@@ -54,7 +54,7 @@ return {
             enable_git_status = true,
             enable_diagnostics = true,
             window = {
-               position = "left",  -- left or right
+               position = "left",
                width = 30,
                mappings = {
                   ["t"] = "none",
@@ -72,27 +72,27 @@ return {
                   auto = "current",
                },
                filtered_items = {
-                  hide_dotfiles = false,   -- show hidden files
-                  hide_gitignored = false, -- optional: show gitignored files
-                  never_show = {},         -- list of file/directory names to never show
+                  hide_dotfiles = false,
+                  hide_gitignored = false,
+                  never_show = {},
                },
             },
          })
       end,
    },
    {
-      "lukas-reineke/indent-blankline.nvim",
+      "lukas-reineke/indent-blankline.nvim", -- Creates the indent lines
       main = "ibl",
       opts = {},
    },
    {
-      "numToStr/Comment.nvim",
+      "numToStr/Comment.nvim", -- Comment stuff
       lazy = false,
       config = function()
          require('Comment').setup({
-            padding = true,   
-            sticky = true,    
-            ignore = '^$',  
+            padding = true,
+            sticky = true,
+            ignore = '^$',
             toggler = {
                line = 'gcc',
                block = 'gbc',
@@ -105,19 +105,19 @@ return {
       end,
    },
    {
-      "RRethy/vim-illuminate",
-      event = "VeryLazy", -- load lazily after startup
+      "RRethy/vim-illuminate", -- Underline selected words
+      event = "VeryLazy",
       opts = {
-         delay = 100,                -- delay in ms before highlighting
-         under_cursor = true,        -- highlight word under cursor
-         large_file_cutoff = 2000,   -- disable for very large files
+         delay = 100,
+         under_cursor = true,
+         large_file_cutoff = 2000,
       },
       config = function(_, opts)
          require('illuminate').configure(opts)
       end,
    },
    {
-      "akinsho/bufferline.nvim",
+      "akinsho/bufferline.nvim", -- Buffers per page
       event = "VeryLazy",
       dependencies = { "nvim-tree/nvim-web-devicons" },
       opts = {
@@ -199,7 +199,7 @@ return {
                      command = "clippy",
                      extraArgs = { "no-deps" },
                   },
-               }, 
+               },
                cargo = { allFeatures = true },
                procMacro = { enable = true },
             },
@@ -238,20 +238,20 @@ return {
       "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
       config = function()
          require("lsp_lines").setup()
-         vim.diagnostic.config({ virtual_text = false })  -- disable inline text
+         vim.diagnostic.config({ virtual_text = false }) -- disable inline text
       end,
    },
    {
-      'akinsho/toggleterm.nvim', 
+      'akinsho/toggleterm.nvim',
       version = "*",
       config = function()
-          require("toggleterm").setup{
-            open_mapping = [[nn]], -- <leader>t instead of Ctrl-\
+         require("toggleterm").setup {
+            open_mapping = [[<C-n>]], -- <leader>t instead of Ctrl-\
             direction = "float",
             shade_terminals = true,
             size = 50,
             float_opts = { border = "curved" },
-          }
+         }
       end,
    },
    {
@@ -265,15 +265,34 @@ return {
       }
    },
    {
-     "linux-cultist/venv-selector.nvim",
-     dependencies = {
-       "neovim/nvim-lspconfig",
-       { "nvim-telescope/telescope.nvim", branch = "0.1.x", dependencies = { "nvim-lua/plenary.nvim" } },
-     },
-     ft = "python",
-     opts = {
+      "linux-cultist/venv-selector.nvim",
+      dependencies = {
+         "neovim/nvim-lspconfig",
+         { "nvim-telescope/telescope.nvim", branch = "0.1.x", dependencies = { "nvim-lua/plenary.nvim" } },
+      },
+      ft = "python",
+      opts = {
          search = {},
          options = {}
-     },
+      },
    },
+   {
+      "stevearc/conform.nvim",
+      opts = {
+         format_on_save = {
+            lsp_fallback = true,
+         },
+         formatters_by_ft = {
+            lua = { "stylua" },
+            python = { "black" },
+            javascript = { "prettier" },
+            typescript = { "prettier" },
+            html = { "prettier" },
+            css = { "prettier" },
+            rust = { "rustfmt" },
+            c = { "clang-format" },
+            cpp = { "clang-format" },
+         }
+      }
+   }
 }
