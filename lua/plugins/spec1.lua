@@ -6,16 +6,16 @@ return {
    },
    {
       'nvim-treesitter/nvim-treesitter',
-      build = ':TSUpdate',                              -- automatically update parsers
-      event = { "BufReadPost", "BufNewFile" },          -- lazy-load on file open
+      build = ':TSUpdate',
+      event = { "BufReadPost", "BufNewFile" },
       dependencies = {
-         'nvim-treesitter/nvim-treesitter-textobjects', -- optional
+         'nvim-treesitter/nvim-treesitter-textobjects',
       },
       config = function()
          require('nvim-treesitter.configs').setup({
-            ensure_installed = { "c", "cpp", "python", "lua", "rust", "javascript", "html", "css", "typescript", "sql", "markdown", "yaml" }, -- languages
+            ensure_installed = { "c", "cpp", "python", "lua", "rust", "javascript", "html", "css", "typescript", "sql", "markdown", "yaml" },
             highlight = {
-               enable = true,                                                                                                                 -- false will disable the whole extension
+               enable = true,
                additional_vim_regex_highlighting = false,
             },
             indent = {
@@ -49,7 +49,7 @@ return {
       lazy = false,
       config = function()
          require("neo-tree").setup({
-            close_if_last_window = true,
+            close_if_last_window = false,
             popup_border_style = "rounded",
             enable_git_status = true,
             enable_diagnostics = true,
