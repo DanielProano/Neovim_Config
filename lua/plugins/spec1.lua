@@ -243,7 +243,7 @@ return {
             watch_for_changes = true,
             columns = { "icon" },
             view_options = {
-               show_hidden = false,
+               show_hidden = true, -- show dotfiles by default
                natural_order = "fast",
                sort = {
                   { "type", "asc" },

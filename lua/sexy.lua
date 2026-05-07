@@ -65,7 +65,7 @@ function sexy.setup()
    vim.api.nvim_set_hl(0, "LazyBorder", { fg = "#65737E" })
    vim.api.nvim_set_hl(0, "LazyComment", { fg = "#5c6370" })
 
-   vim.api.nvim_set_hl(0, "DiagnosticError", { fg = "#E06C75" })
+   vim.api.nvim_set_hl(0, "DiagnosticError", { fg = "#FF1E00" })
    vim.api.nvim_set_hl(0, "DiagnosticWarn", { fg = "#E5C07B" })
    vim.api.nvim_set_hl(0, "DiagnosticInfo", { fg = "#61AFEF" })
    vim.api.nvim_set_hl(0, "DiagnosticHint", { fg = "#98C379" })

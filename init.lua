@@ -1,16 +1,13 @@
 vim.g.mapleader = ' '
-
 vim.g.have_nerd_font = true
 
 vim.o.number = true
 vim.o.mouse = 'a'
 vim.o.showmode = false
 vim.o.autoread = true
-
 vim.o.breakindent = true
 vim.o.termguicolors = true
 vim.o.background = "dark"
-
 vim.o.expandtab = true
 vim.o.smartindent = true
 vim.o.autoindent = true
@@ -18,16 +15,12 @@ vim.o.tabstop = 3
 vim.o.shiftwidth = 3
 vim.o.undofile = true
 vim.o.signcolumn = 'yes'
-
 vim.o.ignorecase = true
 vim.o.smartcase = true
-
 vim.o.updatetime = 249
 vim.o.timeoutlen = 299
-
 vim.o.splitright = true
 vim.o.splitbelow = true
-
 vim.o.scrolloff = 9
 
 vim.schedule(function()
