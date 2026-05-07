@@ -39,48 +39,6 @@ return {
       end
    },
    {
-      "nvim-neo-tree/neo-tree.nvim",
-      branch = "v3.x",
-      dependencies = {
-         "nvim-lua/plenary.nvim",
-         "MunifTanjim/nui.nvim",
-         "nvim-tree/nvim-web-devicons",
-      },
-      lazy = false,
-      config = function()
-         require("neo-tree").setup({
-            close_if_last_window = false,
-            popup_border_style = "rounded",
-            enable_git_status = true,
-            enable_diagnostics = true,
-            window = {
-               position = "left",
-               width = 30,
-               mappings = {
-                  ["t"] = "none",
-                  ["e"] = "none",
-                  ["s"] = "none",
-                  ["x"] = "none",
-               },
-            },
-            filesystem = {
-               follow_current_file = false,
-               use_libuv_file_watcher = true,
-               hijack_netrw_behavior = "open_current",
-               use_popups_for_input = false,
-               cwd_target = {
-                  auto = "current",
-               },
-               filtered_items = {
-                  hide_dotfiles = false,
-                  hide_gitignored = false,
-                  never_show = {},
-               },
-            },
-         })
-      end,
-   },
-   {
       "lukas-reineke/indent-blankline.nvim", -- Creates the indent lines
       main = "ibl",
       opts = {},
@@ -117,22 +75,6 @@ return {
       end,
    },
    {
-      "akinsho/bufferline.nvim", -- Buffers per page
-      event = "VeryLazy",
-      dependencies = { "nvim-tree/nvim-web-devicons" },
-      opts = {
-         options = {
-            diagnostics = "nvim_lsp",
-            show_buffer_close_icons = true,
-            show_close_icon = true,
-            separator_style = "slant",
-         },
-      },
-      config = function(_, opts)
-         require("bufferline").setup(opts)
-      end,
-   },
-   {
       'windwp/nvim-autopairs',
       event = "InsertEnter",
       config = true
@@ -145,7 +87,7 @@ return {
       'mason-org/mason-lspconfig.nvim',
       dependencies = { 'mason-org/mason.nvim', 'neovim/nvim-lspconfig' },
       opts = {
-         ensure_installed = { "lua_ls", "basedpyright" },
+         ensure_installed = { "lua_ls", "basedpyright", "clangd", "html", "cssls", "ts_ls", "bashls" },
          automatic_installation = true,
       }
    },
@@ -194,7 +136,7 @@ return {
          vim.lsp.config('rust_analyzer', {
             capabilities = capabilities,
             settings = {
-               ["rust_analyzer"] = {
+               ["rust-analyzer"] = {
                   checkOnSave = {
                      command = "clippy",
                      extraArgs = { "no-deps" },
@@ -266,15 +208,10 @@ return {
    },
    {
       "linux-cultist/venv-selector.nvim",
-      dependencies = {
-         "neovim/nvim-lspconfig",
-         { "nvim-telescope/telescope.nvim", branch = "0.1.x", dependencies = { "nvim-lua/plenary.nvim" } },
-      },
+      branch = "regexp",
+      dependencies = { "neovim/nvim-lspconfig" },
       ft = "python",
-      opts = {
-         search = {},
-         options = {}
-      },
+      opts = {},
    },
    {
       "stevearc/conform.nvim",
@@ -294,5 +231,37 @@ return {
             cpp = { "clang-format" },
          }
       }
-   }
+   },
+   {
+      "stevearc/oil.nvim",
+      dependencies = { "nvim-tree/nvim-web-devicons" },
+      config = function()
+         require("oil").setup({
+            default_file_explorer = true,
+            delete_to_trash = true,
+            skip_confirm_for_simple_edits = true,
+            watch_for_changes = true,
+            columns = { "icon" },
+            view_options = {
+               show_hidden = false,
+               natural_order = "fast",
+               sort = {
+                  { "type", "asc" },
+                  { "name", "asc" },
+               },
+            },
+            float = {
+               padding = 2,
+               border = "rounded",
+            },
+            keymaps = {
+               ["<CR>"] = "actions.select",
+               ["<BS>"] = { "actions.parent", mode = "n" },
+               ["-"]    = { "actions.close", mode = "n" },
+               ["."]    = { "actions.toggle_hidden", mode = "n" },
+            },
+            use_default_keymaps = false, -- only use what's above
+         })
+      end,
+   },
 }

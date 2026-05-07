@@ -8,7 +8,6 @@ vim.o.showmode = false
 vim.o.autoread = true
 
 vim.o.breakindent = true
-vim.o.colorcolumn = "79"
 vim.o.termguicolors = true
 vim.o.background = "dark"
 
@@ -35,15 +34,8 @@ vim.schedule(function()
    vim.o.clipboard = 'unnamedplus'
 end)
 
-vim.keymap.set('v', '<C-c>', 'y', { noremap = true, silent = true })
-vim.keymap.set('n', '<C-v>', 'p', { noremap = true, silent = true })
-vim.keymap.set('n', '<C-a>', 'ggVG', { noremap = true, silent = true })
-vim.keymap.set('n', '<C-x>', '<Cmd>:noh<CR>', { noremap = true, silent = true })
-vim.keymap.set('n', 'tt', '<Cmd>:Neotree toggle<CR>', { noremap = true, silent = true })
 vim.keymap.set('n', 't', '<Nop>', { noremap = true, silent = true })
-vim.keymap.set('n', 'qq', '<Cmd>:Neotree focus<CR>', { noremap = true, silent = true })
-vim.keymap.set({ 'n', 'v', 'x', 'o' }, 'q', '<Nop>', { noremap = true, silent = true })
-vim.keymap.set('n', 'ss', '<Cmd>:vsp<CR>', { noremap = true, silent = true })
+vim.keymap.set('n', 'q', '<Nop>', { noremap = true, silent = true })
 vim.keymap.set('n', 'b', '<Nop>', { noremap = true, silent = true })
 vim.keymap.set('n', 'r', '<Nop>', { noremap = true, silent = true })
 vim.keymap.set('n', 'e', '<Nop>', { noremap = true, silent = true })
@@ -64,17 +56,22 @@ vim.keymap.set('n', '^', '<Nop>', { noremap = true, silent = true })
 vim.keymap.set('n', '&', '<Nop>', { noremap = true, silent = true })
 vim.keymap.set('n', '(', '<Nop>', { noremap = true, silent = true })
 vim.keymap.set('n', ')', '<Nop>', { noremap = true, silent = true })
-vim.keymap.set('n', '_', '<Nop>', { noremap = true, silent = true })
 vim.keymap.set('n', '~', '<Nop>', { noremap = true, silent = true })
-vim.keymap.set('n', 'o', '<Nop>', { noremap = true, silent = true })
-vim.keymap.set('n', 'xx', '<Cmd>:q<CR>', { noremap = true, silent = true })
+
 vim.keymap.set('v', '<S-Tab>', '<gv', { noremap = true, silent = true })
 vim.keymap.set('v', '<Tab>', '>gv', { noremap = true, silent = true })
+vim.keymap.set('n', 'xx', '<Cmd>:q<CR>', { noremap = true, silent = true })
 vim.keymap.set('n', 'ff', '<Cmd>:Lspsaga finder<CR>', { noremap = true, silent = true })
 vim.keymap.set('n', 'mm', '<Cmd>:Lspsaga hover_doc<CR>', { noremap = true, silent = true })
 vim.keymap.set('n', 'rr', '<Cmd>:VenvSelect<CR>', { noremap = true, silent = true })
+vim.keymap.set('n', '-', '<Cmd>Oil<CR>', { noremap = true, silent = true })
+vim.keymap.set('n', '<C-x>', '<Cmd>:noh<CR>', { noremap = true, silent = true })
+vim.keymap.set('v', '<C-c>', 'y', { noremap = true, silent = true })
+vim.keymap.set('n', '<C-v>', 'p', { noremap = true, silent = true })
+vim.keymap.set('n', '<C-a>', 'ggVG', { noremap = true, silent = true })
+vim.keymap.set('n', 'ss', '<Cmd>:vsp<CR>', { noremap = true, silent = true })
 
-vim.keymap.set("n", "oo", function()
+vim.keymap.set("n", "bb", function()
    require("lsp_lines").toggle()
 end)
 
