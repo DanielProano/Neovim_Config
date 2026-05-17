@@ -7,7 +7,7 @@ vim.o.showmode = false
 vim.o.autoread = true
 vim.o.breakindent = true
 vim.o.termguicolors = true
-vim.o.background = "dark"
+vim.o.background = 'dark'
 vim.o.expandtab = true
 vim.o.smartindent = true
 vim.o.autoindent = true
@@ -57,12 +57,25 @@ vim.keymap.set('n', 'xx', '<Cmd>:q<CR>', { noremap = true, silent = true })
 vim.keymap.set('n', 'ff', '<Cmd>:Lspsaga finder<CR>', { noremap = true, silent = true })
 vim.keymap.set('n', 'mm', '<Cmd>:Lspsaga hover_doc<CR>', { noremap = true, silent = true })
 vim.keymap.set('n', 'rr', '<Cmd>:VenvSelect<CR>', { noremap = true, silent = true })
+vim.keymap.set('n', 'ss', '<Cmd>:vsp<CR>', { noremap = true, silent = true })
 vim.keymap.set('n', '-', '<Cmd>Oil<CR>', { noremap = true, silent = true })
 vim.keymap.set('n', '<C-x>', '<Cmd>:noh<CR>', { noremap = true, silent = true })
 vim.keymap.set('v', '<C-c>', 'y', { noremap = true, silent = true })
 vim.keymap.set('n', '<C-v>', 'p', { noremap = true, silent = true })
 vim.keymap.set('n', '<C-a>', 'ggVG', { noremap = true, silent = true })
-vim.keymap.set('n', 'ss', '<Cmd>:vsp<CR>', { noremap = true, silent = true })
+
+vim.keymap.set('n', '<C-d>', function()
+   if vim.o.background == 'dark' then
+      vim.o.background = 'light'
+   else
+      vim.o.background = 'dark'
+   end
+
+   -- Re-run the setup function to apply the new background color rules
+   pcall(function()
+      require("sexy").setup()
+   end)
+end, { desc = "Toggle light/dark mode", silent = true })
 
 vim.keymap.set("n", "bb", function()
    require("lsp_lines").toggle()
@@ -96,5 +109,7 @@ vim.api.nvim_command "augroup end"
 vim.api.nvim_set_keymap("n", "cc", "<Nop>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("n", "c", "<Nop>", { noremap = true, silent = true })
 
-require("sexy").setup()
 require("config.lazy")
+pcall(function()
+   require("sexy").setup()
+end)
