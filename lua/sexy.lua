@@ -7,12 +7,20 @@ function sexy.setup()
       -- ☀️ Light Mode Palette
       bg          = "#FAFAFA"
       fg          = "#282A2E"
-      cursor_line = "#D0E1FD"
+      cursor_line = "#2AAAFF"
       color_col   = "#E0E0E0"
       line_nr     = "#9E9E9E"
       float_bg    = "#F0F0F0"
       pmenu_bg    = "#EAEAEA"
-      pmenu_sel   = "#B3D4FC"
+      pmenu_sel   = "#2AAAFF"
+
+      statements  = "#D1C111"
+      functions   = "#0066CC"
+      constants   = "#CC0000"
+      strings     = "#228B22"
+      types       = "#D84315"
+      preproc     = "#6A0DAD"
+      special     = "#C2185B"
    else
       -- 🌙 Dark Mode Palette (Your original colors)
       bg          = "#282a2e"
@@ -23,6 +31,14 @@ function sexy.setup()
       float_bg    = "#282a2e"
       pmenu_bg    = "#2d3131"
       pmenu_sel   = "#0F3758"
+
+      statements  = "#F0C673"
+      functions   = "#81D4FA"
+      constants   = "#FF3D3D"
+      strings     = "#98C379"
+      types       = "#F58435"
+      preproc     = "#A624FA"
+      special     = "#F258E1"
    end
 
    -- Basic UI (Using the dynamic colors)
@@ -37,45 +53,45 @@ function sexy.setup()
    vim.api.nvim_set_hl(0, "Comment", { fg = "#65737E", italic = true })
 
    -- Statements
-   vim.api.nvim_set_hl(0, "Statement", { fg = "#F0C673", bold = true })
-   vim.api.nvim_set_hl(0, "Conditional", { fg = "#F0C673", bold = true })
-   vim.api.nvim_set_hl(0, "Repeat", { fg = "#F0C673", bold = true })
-   vim.api.nvim_set_hl(0, "Label", { fg = "#F0C673", bold = true })
-   vim.api.nvim_set_hl(0, "Operator", { fg = "#F0C673", bold = true })
-   vim.api.nvim_set_hl(0, "Keyword", { fg = "#F0C673", bold = true })
-   vim.api.nvim_set_hl(0, "Exception", { fg = "#F0C673", bold = true })
+   vim.api.nvim_set_hl(0, "Statement", { fg = statements, bold = true })
+   vim.api.nvim_set_hl(0, "Conditional", { fg = statements, bold = true })
+   vim.api.nvim_set_hl(0, "Repeat", { fg = statements, bold = true })
+   vim.api.nvim_set_hl(0, "Label", { fg = statements, bold = true })
+   vim.api.nvim_set_hl(0, "Operator", { fg = statements, bold = true })
+   vim.api.nvim_set_hl(0, "Keyword", { fg = statements, bold = true })
+   vim.api.nvim_set_hl(0, "Exception", { fg = statements, bold = true })
 
    -- Functions
-   vim.api.nvim_set_hl(0, "Function", { fg = "#81d4fa" })
+   vim.api.nvim_set_hl(0, "Function", { fg = functions })
 
    -- Constants
-   vim.api.nvim_set_hl(0, "Constant", { fg = "#FF3D3D" })
-   vim.api.nvim_set_hl(0, "String", { fg = "#98C379" })
-   vim.api.nvim_set_hl(0, "Number", { fg = "#FF3D3D" })
-   vim.api.nvim_set_hl(0, "Boolean", { fg = "#FF3D3D" })
-   vim.api.nvim_set_hl(0, "Float", { fg = "#FF3D3D" })
-   vim.api.nvim_set_hl(0, "Character", { fg = "#FF3D3D" })
+   vim.api.nvim_set_hl(0, "Constant", { fg = constants })
+   vim.api.nvim_set_hl(0, "String", { fg = strings })
+   vim.api.nvim_set_hl(0, "Number", { fg = constants })
+   vim.api.nvim_set_hl(0, "Boolean", { fg = constants })
+   vim.api.nvim_set_hl(0, "Float", { fg = constants })
+   vim.api.nvim_set_hl(0, "Character", { fg = constants })
 
    -- Types
-   vim.api.nvim_set_hl(0, "StorageClass", { fg = "#F58435" })
-   vim.api.nvim_set_hl(0, "Structure", { fg = "#F58435" })
-   vim.api.nvim_set_hl(0, "Typedef", { fg = "#F58435" })
-   vim.api.nvim_set_hl(0, "Type", { fg = "#F58435" })
+   vim.api.nvim_set_hl(0, "StorageClass", { fg = types })
+   vim.api.nvim_set_hl(0, "Structure", { fg = types })
+   vim.api.nvim_set_hl(0, "Typedef", { fg = types })
+   vim.api.nvim_set_hl(0, "Type", { fg = types })
 
    -- PreProc
-   vim.api.nvim_set_hl(0, "PreProc", { fg = "#a624fa" })
-   vim.api.nvim_set_hl(0, "Include", { fg = "#a624fa" })
-   vim.api.nvim_set_hl(0, "Define", { fg = "#a624fa" })
-   vim.api.nvim_set_hl(0, "Macro", { fg = "#a624fa" })
-   vim.api.nvim_set_hl(0, "PreCondit", { fg = "#a624fa" })
+   vim.api.nvim_set_hl(0, "PreProc", { fg = preproc })
+   vim.api.nvim_set_hl(0, "Include", { fg = preproc })
+   vim.api.nvim_set_hl(0, "Define", { fg = preproc })
+   vim.api.nvim_set_hl(0, "Macro", { fg = preproc })
+   vim.api.nvim_set_hl(0, "PreCondit", { fg = preproc })
 
    -- Special
-   vim.api.nvim_set_hl(0, "Special", { fg = "#F258E1" })
-   vim.api.nvim_set_hl(0, "SpecialChar", { fg = "#F258E1" })
-   vim.api.nvim_set_hl(0, "Tag", { fg = "#F258E1" })
-   vim.api.nvim_set_hl(0, "Delimiter", { fg = "#F258E1" })
-   vim.api.nvim_set_hl(0, "SpecialComment", { fg = "#F258E1" })
-   vim.api.nvim_set_hl(0, "Debug", { fg = "#F258E1" })
+   vim.api.nvim_set_hl(0, "Special", { fg = special })
+   vim.api.nvim_set_hl(0, "SpecialChar", { fg = special })
+   vim.api.nvim_set_hl(0, "Tag", { fg = special })
+   vim.api.nvim_set_hl(0, "Delimiter", { fg = special })
+   vim.api.nvim_set_hl(0, "SpecialComment", { fg = special })
+   vim.api.nvim_set_hl(0, "Debug", { fg = special })
 
    -- Floating windows (menus, popups, tooltips)
    vim.api.nvim_set_hl(0, "NormalFloat", { bg = float_bg, fg = fg })
